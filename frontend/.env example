@@ -1,1 +1,3 @@
 VITE_BACKEND_URL=your_url
+
+VITE_FORECAST_API=forecast_url
