@@ -3,11 +3,23 @@ import WeatherContext from '../context/WeatherContext';
 import cloudy from '../assets/forecast/cloudy.png';
 import clear from '../assets/forecast/clear.png';
 import lightRain from '../assets/forecast/lightRain.png';
+import heavyRain from '../assets/forecast/heavyRain.png';
 import partlyCloudy from '../assets/forecast/partlyCloudy.png';
 import thunder from '../assets/forecast/thunder.png';
 import sleet from '../assets/forecast/sleet.png';
 import snow from '../assets/forecast/snow.png';
+import heavySnow from '../assets/forecast/heavySnow.png';
+import fog from '../assets/forecast/fog.png';
+import hail from '../assets/forecast/hail.png';
 import { ClipLoader } from 'react-spinners';
+import {
+  WiStrongWind,
+  WiHumidity,
+  WiCloud,
+  WiBarometer,
+  WiRaindrop,
+  WiWindy,
+} from 'react-icons/wi';
 
 const Card = () => {
   const { weather, isLoading } = useContext(WeatherContext);
@@ -47,7 +59,7 @@ const Card = () => {
     'cloudy-with-sunny-intervals': cloudy,
     cloudy: cloudy,
     'light-rain': lightRain,
-    'heavy-rain': lightRain,
+    'heavy-rain': heavyRain,
     thunder: thunder,
     'isolated-thunderstorms': thunder,
     thunderstorms: thunder,
@@ -55,13 +67,13 @@ const Card = () => {
     'light-sleet': sleet,
     sleet: sleet,
     'freezing-rain': sleet,
-    hail: sleet,
+    hail: hail,
     'light-snow': snow,
     snow: snow,
-    'heavy-snow': snow,
-    fog: null,
+    'heavy-snow': heavySnow,
+    fog: fog,
     default: cloudy,
-  }; 
+  };
 
   return (
     <div className='card' style={{ border: 'none', backgroundColor: 'transparent' }}>
@@ -74,7 +86,7 @@ const Card = () => {
         </div>
         {closestForecast ? (
           <>
-            <div className='d-flex gap-2'>
+            <div className='d-flex gap-2 mt-5'>
               <div className='card-image'>
                 <img
                   src={weatherIcons[closestForecast.conditionCode]}
@@ -84,7 +96,10 @@ const Card = () => {
               </div>
               <div className='me-5'>
                 <p className='card-temperature d-flex g-1' style={{ fontSize: '6rem' }}>
-                  {closestForecast.airTemperature} <span style={{ fontSize: '2rem' }}>°C</span>
+                  {closestForecast.airTemperature}{' '}
+                  <span className='mt-4' style={{ fontSize: '2rem' }}>
+                    °C
+                  </span>
                 </p>
                 <p className='card-feels-like'>
                   Feels like {closestForecast.feelsLikeTemperature}°C
@@ -92,17 +107,26 @@ const Card = () => {
               </div>
               <div className='card-info d-flex gap-5'>
                 <div className='left-side-info'>
-                  <p className='wind-speed'>Wind speed {closestForecast.windSpeed} m/s</p>
-                  <p className='humidity'>Humidity {closestForecast.relativeHumidity} %</p>
-                  <p className='cloud-cover'>Cloud cover {closestForecast.cloudCover} %</p>
+                  <p className='wind-speed d-flex gap-1'>
+                    <WiStrongWind size={24} /> Wind speed {closestForecast.windSpeed} m/s
+                  </p>
+                  <p className='humidity d-flex gap-1'>
+                    <WiHumidity size={24} /> Humidity {closestForecast.relativeHumidity} %
+                  </p>
+                  <p className='cloud-cover d-flex gap-1'>
+                    <WiCloud size={24} /> Cloud cover {closestForecast.cloudCover} %
+                  </p>
                 </div>
                 <div className='right-side-info'>
-                  <p className='wind-speed'>Wind gust {closestForecast.windGust} m/s</p>
-                  <p className='humidity'>
-                    Sea level pressure {closestForecast.seaLevelPressure} hPa
+                  <p className='wind-speed d-flex g-1'>
+                    <WiWindy size={24} /> Wind gust {closestForecast.windGust} m/s
                   </p>
-                  <p className='cloud-cover'>
-                    Precipitation {closestForecast.totalPrecipitation} mm
+                  <p className='humidity d-flex gap-1'>
+                    <WiBarometer size={24} /> Sea level pressure {closestForecast.seaLevelPressure}{' '}
+                    hPa
+                  </p>
+                  <p className='cloud-cover d-flex gap-1'>
+                    <WiRaindrop size={24} /> Precipitation {closestForecast.totalPrecipitation} mm
                   </p>
                 </div>
               </div>
