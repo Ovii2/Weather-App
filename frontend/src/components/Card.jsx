@@ -1,13 +1,16 @@
 import { useContext } from 'react';
 import WeatherContext from '../context/WeatherContext';
-import cloudy from '../assets/cloudy.png';
-import sunny from '../assets/sunny.png';
-import lightRain from '../assets/lightRain.png';
-// import { toast } from 'react-toastify';
+import cloudy from '../assets/forecast/cloudy.png';
+import clear from '../assets/forecast/clear.png';
+import lightRain from '../assets/forecast/lightRain.png';
+import partlyCloudy from '../assets/forecast/partlyCloudy.png';
+import thunder from '../assets/forecast/thunder.png';
+import sleet from '../assets/forecast/sleet.png';
+import snow from '../assets/forecast/snow.png';
 import { ClipLoader } from 'react-spinners';
 
 const Card = () => {
-  const { weather, isLoading, error, city } = useContext(WeatherContext);
+  const { weather, isLoading } = useContext(WeatherContext);
 
   if (isLoading) {
     return (
@@ -39,19 +42,26 @@ const Card = () => {
   );
 
   const weatherIcons = {
-    clear: sunny,
-    'partly-cloudy': sunny,
+    clear: clear,
+    'partly-cloudy': partlyCloudy,
+    'cloudy-with-sunny-intervals': cloudy,
     cloudy: cloudy,
-    overcast: cloudy,
     'light-rain': lightRain,
-    'moderate-rain': lightRain,
     'heavy-rain': lightRain,
-  };
-
-  const getWeatherImage = () => {
-    if (!closestForecast) return cloudy;
-    return weatherIcons[closestForecast.conditionCode] || cloudy;
-  };
+    thunder: thunder,
+    'isolated-thunderstorms': thunder,
+    thunderstorms: thunder,
+    'heavy-rain-with-thunderstorms': thunder,
+    'light-sleet': sleet,
+    sleet: sleet,
+    'freezing-rain': sleet,
+    hail: sleet,
+    'light-snow': snow,
+    snow: snow,
+    'heavy-snow': snow,
+    fog: null,
+    default: cloudy,
+  }; 
 
   return (
     <div className='card' style={{ border: 'none', backgroundColor: 'transparent' }}>
@@ -67,7 +77,7 @@ const Card = () => {
             <div className='d-flex gap-2'>
               <div className='card-image'>
                 <img
-                  src={getWeatherImage()}
+                  src={weatherIcons[closestForecast.conditionCode]}
                   alt='Weather condition'
                   style={{ width: '10rem', height: '10rem' }}
                 />

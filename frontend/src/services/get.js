@@ -11,21 +11,29 @@ export const getAllWeatherData = async () => {
   }
 };
 
-export const getCityWeather = async (city) => {
-  try {
-    const response = await axios.get(`${BACKEND_URL}/weather/${city}`);
-    return response.data;
+export const getWeatherDataByCityLongTerm = async (city) => {
+  try {    
+    const formattedCity = city.toLowerCase().replace(/\s+/g, '-').replace(/[()]/g, ''); 
+    const response = await fetch(`${BACKEND_URL}/weather/${formattedCity}/forecasts/long-term`);
+    if (!response.ok) {
+      throw new Error('City not found');
+    }
+    return await response.json();
   } catch (error) {
-    console.error(`Error fetching weather for ${city}:`, error);
-    throw new Error(`Error fetching weather: ${error.message}`);
+    throw new Error(`Error fetching weather data: ${error.message}`);
   }
 };
 
-export const getWeatherDataByCityLongTerm = async (city) => {
+export const getAvailableCities = async () => {
   try {
-    const resp = await axios.get(`${BACKEND_URL}/weather/${city}/forecasts/long-term`);
-    return resp.data;
+    const response = await fetch(`${BACKEND_URL}/weather`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch city names');
+    }
+    const data = await response.json();
+    const filteredCities = data.filter((city) => city.countryCode !== 'RU');
+    return filteredCities.map((city) => city.name);
   } catch (error) {
-    throw new Error(`Error fetching all data: ${error.message}`);
+    throw new Error(`Error fetching cities: ${error.message}`);
   }
 };
