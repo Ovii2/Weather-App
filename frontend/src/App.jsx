@@ -7,16 +7,18 @@ import { Flip, ToastContainer } from 'react-toastify';
 
 function App() {
   return (
-    <>
+    <div className='d-flex flex-column min-vh-100'>
       <ToastContainer autoClose={1000} position='top-center' transition={Flip} />
       <Header />
-      <Routes>
-        <Route path='/' element={<Navigate to='/weather' />} />
-        <Route path='/weather' element={<WeatherPage />} />
-        <Route path='*' element={<NotFoundPage />} />
-      </Routes>
+      <main className='flex-grow-1'>
+        <Routes>
+          <Route path='/' element={<Navigate to='/weather' />} />
+          <Route path='/weather' element={<WeatherPage />} />
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }
 

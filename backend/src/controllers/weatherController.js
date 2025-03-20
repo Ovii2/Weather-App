@@ -11,16 +11,6 @@ const getWeather = async (req, res) => {
   }
 };
 
-const getCityInfo = async (req, res) => {
-  const { city } = req.params;
-  try {
-    const response = await axios.get(`${BASE_URL}/${city}`);
-    res.json(response.data);
-  } catch (error) {
-    res.status(500).json({ error: `Failed to fetch ${city} weather data` });
-  }
-};
-
 const getWeatherByCityLongTerm = async (req, res) => {
   const { city } = req.params;
   try {
@@ -31,4 +21,4 @@ const getWeatherByCityLongTerm = async (req, res) => {
   }
 };
 
-module.exports = { getWeather, getCityInfo, getWeatherByCityLongTerm };
+module.exports = { getWeather, getWeatherByCityLongTerm };
