@@ -3,10 +3,12 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import NotFoundPage from './pages/NotFoundPage';
 import WeatherPage from './pages/WeatherPage';
+import { Flip, ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <>
+      <ToastContainer autoClose={1000} position='top-center' transition={Flip} />
       <Header />
       <Routes>
         <Route path='/weather' element={<WeatherPage />} />
