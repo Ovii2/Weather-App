@@ -1,0 +1,67 @@
+@media screen and (min-width: 320px) {
+  .card-temp {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-image-temp {
+    display: flex;
+    flex-direction: column;
+    width: 10rem;
+  }
+
+  .card-info {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .card-temp {
+    flex-direction: row;
+  }
+  .card-image-temp {
+    flex-direction: column;
+    align-items: center;
+    width: 15rem;
+
+    img {
+      margin-right: 5rem;
+    }
+  }
+
+  .card-temperature {
+    font-size: 5rem !important;
+  }
+
+  .card-info {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .card-temp {
+    flex-direction: row;
+  }
+  .card-info {
+    flex-direction: row;
+  }
+
+  .card-image-temp {
+    flex-direction: row;
+    align-items: center;
+    width: 20rem;
+
+    img {
+      margin-right: 0rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .card-temp {
+    flex-direction: row;
+  }
+  .card-info {
+    width: 100%;
+  }
+}

@@ -1,6 +1,18 @@
 import { createContext, useEffect, useState } from 'react';
 import { getWeatherDataByCityLongTerm } from '../services/get';
 import { toast } from 'react-toastify';
+import cloudy from '../assets/forecast/cloudy.png';
+import clear from '../assets/forecast/clear.png';
+import lightRain from '../assets/forecast/lightRain.png';
+import heavyRain from '../assets/forecast/heavyRain.png';
+import rain from '../assets/forecast/rain.png';
+import partlyCloudy from '../assets/forecast/partlyCloudy.png';
+import thunder from '../assets/forecast/thunder.png';
+import sleet from '../assets/forecast/sleet.png';
+import snow from '../assets/forecast/snow.png';
+import heavySnow from '../assets/forecast/heavySnow.png';
+import fog from '../assets/forecast/fog.png';
+import hail from '../assets/forecast/hail.png';
 
 const WeatherContext = createContext();
 const selectedCity = localStorage.getItem('selectedCity') || 'Vilnius';
@@ -10,6 +22,29 @@ export const WeatherProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [weather, setWeather] = useState({});
+
+  const weatherIcons = {
+    clear: clear,
+    'partly-cloudy': partlyCloudy,
+    'cloudy-with-sunny-intervals': cloudy,
+    cloudy: cloudy,
+    'light-rain': lightRain,
+    rain: rain,
+    'heavy-rain': heavyRain,
+    thunder: thunder,
+    'isolated-thunderstorms': thunder,
+    thunderstorms: thunder,
+    'heavy-rain-with-thunderstorms': thunder,
+    'light-sleet': sleet,
+    sleet: sleet,
+    'freezing-rain': sleet,
+    hail: hail,
+    'light-snow': snow,
+    snow: snow,
+    'heavy-snow': heavySnow,
+    fog: fog,
+    default: cloudy,
+  };
 
   useEffect(() => {
     const fetchWeatherData = async () => {
@@ -41,7 +76,7 @@ export const WeatherProvider = ({ children }) => {
   }, [city]);
 
   return (
-    <WeatherContext.Provider value={{ weather, isLoading, error, city, setCity }}>
+    <WeatherContext.Provider value={{ weather, isLoading, error, city, setCity, weatherIcons }}>
       {children}
     </WeatherContext.Provider>
   );

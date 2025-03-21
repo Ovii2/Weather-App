@@ -1,16 +1,5 @@
 import { useContext } from 'react';
-import WeatherContext from '../context/WeatherContext';
-import cloudy from '../assets/forecast/cloudy.png';
-import clear from '../assets/forecast/clear.png';
-import lightRain from '../assets/forecast/lightRain.png';
-import heavyRain from '../assets/forecast/heavyRain.png';
-import partlyCloudy from '../assets/forecast/partlyCloudy.png';
-import thunder from '../assets/forecast/thunder.png';
-import sleet from '../assets/forecast/sleet.png';
-import snow from '../assets/forecast/snow.png';
-import heavySnow from '../assets/forecast/heavySnow.png';
-import fog from '../assets/forecast/fog.png';
-import hail from '../assets/forecast/hail.png';
+import WeatherContext from '../../context/WeatherContext';
 import { ClipLoader } from 'react-spinners';
 import {
   WiStrongWind,
@@ -21,8 +10,10 @@ import {
   WiWindy,
 } from 'react-icons/wi';
 
+import './Card.scss';
+
 const Card = () => {
-  const { weather, isLoading } = useContext(WeatherContext);
+  const { weather, isLoading, weatherIcons } = useContext(WeatherContext);
 
   if (isLoading) {
     return (
@@ -53,28 +44,6 @@ const Card = () => {
     (forecast) => forecast.forecastTimeUtc >= nowFormatted
   );
 
-  const weatherIcons = {
-    clear: clear,
-    'partly-cloudy': partlyCloudy,
-    'cloudy-with-sunny-intervals': cloudy,
-    cloudy: cloudy,
-    'light-rain': lightRain,
-    'heavy-rain': heavyRain,
-    thunder: thunder,
-    'isolated-thunderstorms': thunder,
-    thunderstorms: thunder,
-    'heavy-rain-with-thunderstorms': thunder,
-    'light-sleet': sleet,
-    sleet: sleet,
-    'freezing-rain': sleet,
-    hail: hail,
-    'light-snow': snow,
-    snow: snow,
-    'heavy-snow': heavySnow,
-    fog: fog,
-    default: cloudy,
-  };
-
   return (
     <div className='card' style={{ border: 'none', backgroundColor: 'transparent' }}>
       <div className='card-body'>
@@ -86,7 +55,11 @@ const Card = () => {
         </div>
         {closestForecast ? (
           <>
-            <div className='d-flex gap-2 mt-5'>
+            <div className='card-temp d-flex gap-2 mt-5'>
+              <div className="card-image-temp">
+
+
+
               <div className='card-image'>
                 <img
                   src={weatherIcons[closestForecast.conditionCode]}
@@ -105,6 +78,9 @@ const Card = () => {
                   Feels like {closestForecast.feelsLikeTemperature}°C
                 </p>
               </div>
+
+              </div>
+
               <div className='card-info d-flex gap-5'>
                 <div className='left-side-info'>
                   <p className='wind-speed d-flex gap-1'>

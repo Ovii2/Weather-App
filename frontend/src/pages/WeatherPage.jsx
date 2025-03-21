@@ -1,4 +1,5 @@
-import Card from '../components/Card';
+import Card from '../components/Card/Card';
+import Forecast from '../components/Forecast/Forecast';
 import SeachBar from '../components/SeachBar';
 
 const WeatherPage = () => {
@@ -8,6 +9,7 @@ const WeatherPage = () => {
         <SeachBar className='w-50 text-center' />
       </div>
       <Card />
+      <Forecast />
     </>
   );
 };
