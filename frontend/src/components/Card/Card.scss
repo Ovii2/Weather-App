@@ -18,6 +18,7 @@
 @media screen and (min-width: 600px) {
   .card-temp {
     flex-direction: row;
+    justify-content: center;
   }
   .card-image-temp {
     flex-direction: column;
@@ -41,6 +42,7 @@
 @media screen and (min-width: 768px) {
   .card-temp {
     flex-direction: row;
+    gap: 4rem !important;
   }
   .card-info {
     flex-direction: row;
@@ -60,6 +62,7 @@
 @media screen and (min-width: 1024px) {
   .card-temp {
     flex-direction: row;
+    gap: 6rem !important;
   }
   .card-info {
     width: 100%;

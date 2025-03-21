@@ -4,7 +4,7 @@ import Select from 'react-select';
 import { getAvailableCities } from '../services/get';
 
 const SearchBar = () => {
-  const { setCity } = useContext(WeatherContext);
+  const { setCity, updateMostViewedCities } = useContext(WeatherContext);
   const [cities, setCities] = useState([]);
   const [selectedCity, setSelectedCity] = useState(null);
 
@@ -26,8 +26,10 @@ const SearchBar = () => {
   }, []);
 
   const handleCityChange = (selectedOption) => {
+    if (!selectedOption) return;
     setSelectedCity(selectedOption);
     setCity(selectedOption.value);
+    updateMostViewedCities(selectedOption.value);
   };
 
   return (

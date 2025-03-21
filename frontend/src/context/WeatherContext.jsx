@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 import { getWeatherDataByCityLongTerm } from '../services/get';
 import { toast } from 'react-toastify';
 import cloudy from '../assets/forecast/cloudy.png';
+import cloudyWithSunnyIntervals from '../assets/forecast/cloudyWithSunnyIntervals.png';
 import clear from '../assets/forecast/clear.png';
 import lightRain from '../assets/forecast/lightRain.png';
 import heavyRain from '../assets/forecast/heavyRain.png';
@@ -23,10 +24,15 @@ export const WeatherProvider = ({ children }) => {
   const [error, setError] = useState('');
   const [weather, setWeather] = useState({});
 
+  const defaultCities = ['Vilnius', 'Kaunas', 'Klaipėda'];
+
+  let storedCities = JSON.parse(localStorage.getItem('mostViewedCities')) || defaultCities;
+  const [mostViewedCities, setMostViewedCities] = useState(storedCities);
+
   const weatherIcons = {
     clear: clear,
     'partly-cloudy': partlyCloudy,
-    'cloudy-with-sunny-intervals': cloudy,
+    'cloudy-with-sunny-intervals': cloudyWithSunnyIntervals,
     cloudy: cloudy,
     'light-rain': lightRain,
     rain: rain,
@@ -44,6 +50,14 @@ export const WeatherProvider = ({ children }) => {
     'heavy-snow': heavySnow,
     fog: fog,
     default: cloudy,
+  };
+
+  const updateMostViewedCities = (newCity) => {
+    let updated = mostViewedCities.filter((c) => c !== newCity);
+    updated.unshift(newCity);
+    if (updated.length > 3) updated = updated.slice(0, 3);
+    localStorage.setItem('mostViewedCities', JSON.stringify(updated));
+    setMostViewedCities(updated);
   };
 
   useEffect(() => {
@@ -76,7 +90,18 @@ export const WeatherProvider = ({ children }) => {
   }, [city]);
 
   return (
-    <WeatherContext.Provider value={{ weather, isLoading, error, city, setCity, weatherIcons }}>
+    <WeatherContext.Provider
+      value={{
+        weather,
+        isLoading,
+        error,
+        city,
+        setCity,
+        weatherIcons,
+        mostViewedCities,
+        updateMostViewedCities,
+      }}
+    >
       {children}
     </WeatherContext.Provider>
   );

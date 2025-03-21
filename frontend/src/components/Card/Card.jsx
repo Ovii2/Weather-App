@@ -56,31 +56,26 @@ const Card = () => {
         {closestForecast ? (
           <>
             <div className='card-temp d-flex gap-2 mt-5'>
-              <div className="card-image-temp">
-
-
-
-              <div className='card-image'>
-                <img
-                  src={weatherIcons[closestForecast.conditionCode]}
-                  alt='Weather condition'
-                  style={{ width: '10rem', height: '10rem' }}
-                />
+              <div className='card-image-temp'>
+                <div className='card-image'>
+                  <img
+                    src={weatherIcons[closestForecast.conditionCode]}
+                    alt='Weather condition'
+                    style={{ width: '10rem', height: '10rem' }}
+                  />
+                </div>
+                <div className='me-5'>
+                  <p className='card-temperature d-flex g-1' style={{ fontSize: '6rem' }}>
+                    {closestForecast.airTemperature}{' '}
+                    <span className='mt-4' style={{ fontSize: '2rem' }}>
+                      °C
+                    </span>
+                  </p>
+                  <p className='card-feels-like'>
+                    Feels like {closestForecast.feelsLikeTemperature}°C
+                  </p>
+                </div>
               </div>
-              <div className='me-5'>
-                <p className='card-temperature d-flex g-1' style={{ fontSize: '6rem' }}>
-                  {closestForecast.airTemperature}{' '}
-                  <span className='mt-4' style={{ fontSize: '2rem' }}>
-                    °C
-                  </span>
-                </p>
-                <p className='card-feels-like'>
-                  Feels like {closestForecast.feelsLikeTemperature}°C
-                </p>
-              </div>
-
-              </div>
-
               <div className='card-info d-flex gap-5'>
                 <div className='left-side-info'>
                   <p className='wind-speed d-flex gap-1'>

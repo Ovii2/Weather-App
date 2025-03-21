@@ -22,13 +22,15 @@ const Forecast = () => {
     <div className='forecast-container d-flex justify-content-center mt-4'>
       {fiveDayForecast.map((forecast, index) => (
         <div key={index} className='forecast-day text-center mx-2 p-2 shadow rounded bg-light'>
-          <p className='fw-bold'>{format(new Date(forecast.forecastTimeUtc), 'EEE')}</p>
+          <p className='fw-bold' style={{ fontSize: '1.5rem' }}>
+            {format(new Date(forecast.forecastTimeUtc), 'EEE')}
+          </p>
           <img
             src={weatherIcons[forecast.conditionCode]}
             alt={forecast.conditionCode}
             className='img-fluid w-50 mb-5'
           />
-          <p>{forecast.airTemperature}°C</p>
+          <p style={{ fontSize: '1.5rem' }}>{forecast.airTemperature}°C</p>
         </div>
       ))}
     </div>
