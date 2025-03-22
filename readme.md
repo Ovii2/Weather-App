@@ -24,9 +24,9 @@ A modern and responsive weather forecast web application built with React, displ
 
 ## 🖼️ UI Preview
 
-  <img src="../Weather-App/frontend/src/assets/demo/desktop.png" alt="Desktop preview" width="300" />
-  <img src="../Weather-App/frontend/src/assets/demo/preview.gif" alt="Video preview" width="300" />
-  <img src="../Weather-App/frontend/src/assets/demo/mobile.gif" alt="Mobile preview" width="200" />
+  <img src="./frontend/public/demo/desktop.png" alt="Desktop preview" width="300" />
+  <img src="./frontend/public/demo/preview.gif" alt="Video preview" width="300" />
+  <img src="./frontend/public/demo/mobile.gif" alt="Mobile preview" width="200" />
 
 ## 🧪 Getting Started
 
