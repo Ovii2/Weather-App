@@ -1,12 +1,14 @@
 import { useContext } from 'react';
 import WeatherContext from '../../context/WeatherContext';
+import { postSelectedCity } from '../../services/post';
 
 const MostViewedCities = () => {
   const { setCity, mostViewedCities, updateMostViewedCities } = useContext(WeatherContext);
 
-  const handleClick = (selectedCity) => {
+  const handleClick = async (selectedCity) => {
     updateMostViewedCities(selectedCity);
     setCity(selectedCity);
+    await postSelectedCity(selectedCity);
   };
 
   if (!mostViewedCities?.length) return null;

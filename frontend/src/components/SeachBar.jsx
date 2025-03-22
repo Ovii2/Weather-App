@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import WeatherContext from '../context/WeatherContext';
 import Select from 'react-select';
 import { getAvailableCities } from '../services/get';
+import { postSelectedCity } from '../services/post';
 
 const SearchBar = () => {
   const { setCity, updateMostViewedCities } = useContext(WeatherContext);
@@ -25,11 +26,12 @@ const SearchBar = () => {
     fetchCities();
   }, []);
 
-  const handleCityChange = (selectedOption) => {
+  const handleCityChange = async (selectedOption) => {
     if (!selectedOption) return;
     setSelectedCity(selectedOption);
     setCity(selectedOption.value);
     updateMostViewedCities(selectedOption.value);
+    await postSelectedCity(selectedOption.value);
   };
 
   return (
