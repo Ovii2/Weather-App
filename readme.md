@@ -7,8 +7,8 @@ A modern and responsive weather forecast web application built with React, displ
 - 🔍 **Searchable Dropdown**: Easily find a city using a searchable dropdown powered by `react-select`.
 - 📊 **Current Weather Display**: Temperature, feels-like, wind speed, humidity, cloud cover, precipitation and more.
 - 🗓️ **5-Day Forecast**: Minimal, responsive cards with daily temperature and condition icons.
-- 💾 **Most Viewed Cities**: Browser remembers the 3 most viewed cities and displays quick-access buttons.
-- 🎨 **Custom Weather Icons**: Custom-designed icons for conditions like rain, thunder, sleet, snow, and clear skies.
+- 💾 **Most Viewed Cities**: The browser remembers the 3 most viewed cities and displays quick-access buttons.
+- 🎨 **Custom Weather Icons**: Custom-designed icons for rain, thunder, sleet, snow, and clear skies.
 - 📦 **Persistent Storage**: Uses `localStorage` to remember the last selected city and recently viewed cities.
 - 📱 **Responsive Design**: Fully responsive and mobile-friendly using Bootstrap.
 - ☁️ **Error Handling**: Toast notifications for missing cities, failed API calls, and invalid inputs.
@@ -17,7 +17,7 @@ A modern and responsive weather forecast web application built with React, displ
 ## 🛠️ Technologies Used
 
 - **React**
-- **React Context API**-
+- **React Context API**
 - **Bootstrap 5**
 - **SCSS**
 - **Node.js**
@@ -38,7 +38,7 @@ cd backend
 npm i
 ```
 
-- Create .env file in root directory use .env example as a reference.
+- Create a .env file in the root directory using the .env example as a reference.
 - Enter server port. I was using 3000.
 - Database is currently not in use.
 
